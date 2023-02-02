@@ -20,9 +20,9 @@
             height: 50px;
             width: 50px;
             background-color: none;
-            background-image: url('hammer1.png');
+            /* background-image: url('hammer1.png');
             background-size: 50px 50px;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat; */
         }
     </style>
 </head>
@@ -53,6 +53,11 @@
         console.log('mouseup')
         event.target.style.backgroundImage = "url('hammer1.png')";
     })
+
+    document.addEventListener('mousemove', e => {
+
+        console.log(document.elementFromPoint(e.clientX, e.clientY))
+    }, { passive: true })
 </script>
 
 </html>

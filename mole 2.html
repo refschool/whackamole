@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu wackamole</title>
     <style>
+        html {
+            cursor: url(iconHammer.png) 2 2, pointer;
+        }
+
         @keyframes slidein {
             from {
                 background-position: -20px 300px;
@@ -19,13 +23,12 @@
             to {
                 background-position: -20px 0px;
             }
-
-
         }
 
         body {
             display: flex;
             flex-direction: row;
+            cursor: url('iconHammer.png') pointer;
         }
 
         .drake {
@@ -53,8 +56,6 @@
         }
 
         .box {
-            /* background-image: url('mole.png'); 
-            background-size: cover; */
             border: solid 1px black;
             height: 100px;
             width: 100px;
@@ -63,6 +64,7 @@
 </head>
 
 <body>
+
     <div id="container">
         <div class="box" id="1"></div>
         <div class="box" id="2"></div>
@@ -77,8 +79,7 @@
     <div class="drake"></div>
 </body>
 <script>
-    const smashAudio = new Audio('smash.mp3');
-    const missAudio = new Audio('miss.mp3');
+
     let container = document.querySelector('#container')
     let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     let box = document.querySelectorAll('.box')
@@ -86,38 +87,56 @@
     const round = Math.round, floor = Math.floor, random = Math.random
 
 
-    let colors = ['white']
+    let colors = ['rgb(255, 255, 255)']
 
     setInterval(function () {
         //set random id
         randArray = randArray.map(item => floor(random() * colors.length))
+
         boxArray = boxArray.map((item, index) => {
 
             item.style.backgroundColor = colors[randArray[index]]
             //background image
-            item.style.backgroundImage = "url('mole.png')"
-            item.style.backgroundSize = "cover"
+            item.style.backgroundImage = "none"
             return item
         })
-        boxArray[round(floor(random() * randArray.length))].style.backgroundColor = 'rgb(250, 250, 250)'
+        const rnd = boxArray[round(floor(random() * randArray.length))]
+        rnd.style.backgroundColor = 'rgb(250, 250, 250)'
+        rnd.style.backgroundImage = "url('mole.png')"
+        rnd.style.backgroundSize = "cover"
 
     }, 1000)
 
-    container.addEventListener('click', function (event) {
+
+    container.addEventListener('mousedown', function (event) {
 
         let obj = event.target
         let style = getComputedStyle(obj)
+        const html = document.querySelector('html')
 
         if (style.backgroundColor == 'rgb(250, 250, 250)') {
+            const smashAudio = new Audio('smash.mp3');
             smashAudio.play();
             console.log("smashed !")
+            console.log(event.target.style.backgroundImage)
         } else {
+            const missAudio = new Audio('miss.mp3');
             missAudio.play();
             console.log("missed !")
+            console.log(event.target.style.backgroundImage)
+
         }
 
+        console.log('mousedown')
+
+        html.style.cursor = "url(iconHammer45.png) 2 2, pointer";
     })
 
+    container.addEventListener('mouseup', function (event) {
+        console.log('mouseup')
+        const html = document.querySelector('html')
+        html.style.cursor = "url('iconHammer.png') 2 2, pointer";
+    })
 </script>
 
 </html>
