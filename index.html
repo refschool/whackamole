@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            border: solid 2px blue;
+            padding: 10px;
+            width: 300px;
+        }
+
+        #box {
+            border: solid 1px black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="box"></div>
+    </div>
+</body>
+<script>
+    const box = document.querySelector('#box')
+    const colors = ['pink', 'red', 'green', 'blue', 'orange', 'yellow']
+    box.addEventListener('click', function (event) {
+        console.log('click dans box')
+
+        box.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+
+
+    })
+
+
+    box.addEventListener('mouseover', function (event) {
+        console.log('dans box')
+    })
+
+    // const container = document.querySelector('#container')
+    // container.addEventListener('click', function (event) {
+    //     alert('dans container')
+    // })
+</script>
+
+</html>

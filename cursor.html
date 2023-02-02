@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curseur</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #77dd77;
+        }
+
+        div {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            height: 50px;
+            width: 50px;
+            background-color: none;
+            background-image: url('hammer1.png');
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+</body>
+<script>
+
+    document.addEventListener('mousemove', function (e) {
+        let body = document.querySelector('body');
+        let circle = document.getElementById('cursor');
+        let left = e.pageX;
+        let top = e.pageY;
+        circle.style.left = left + 'px';
+        circle.style.top = top + 'px';
+    });
+    const cursor = document.getElementById('cursor')
+    cursor.addEventListener('mousedown', function (event) {
+        const smashAudio = new Audio('smash.mp3');
+        console.log('mousedown')
+        smashAudio.play();
+        event.target.style.backgroundImage = "url('hammer2.png')";
+    })
+
+    cursor.addEventListener('mouseup', function (event) {
+        console.log('mouseup')
+        event.target.style.backgroundImage = "url('hammer1.png')";
+    })
+</script>
+
+</html>
