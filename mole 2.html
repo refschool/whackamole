@@ -32,6 +32,8 @@
         }
 
         .drake {
+            background: transparent;
+            /* background-size: 360px 360px; */
             background-image: url('mole.png');
             background-repeat: no-repeat;
             background-position: -20px 0px;
@@ -59,6 +61,8 @@
             border: solid 1px black;
             height: 100px;
             width: 100px;
+            background: transparent;
+
         }
     </style>
 </head>
@@ -100,10 +104,11 @@
             item.style.backgroundImage = "none"
             return item
         })
-        const rnd = boxArray[round(floor(random() * randArray.length))]
-        rnd.style.backgroundColor = 'rgb(250, 250, 250)'
-        rnd.style.backgroundImage = "url('mole.png')"
-        rnd.style.backgroundSize = "cover"
+        const randbox = boxArray[round(floor(random() * randArray.length))]
+        randbox.style.backgroundColor = 'rgb(250, 250, 250)'
+        randbox.style.backgroundImage = "url('mole.png')"
+        randbox.style.backgroundSize = "cover"
+        randbox.animate(slidein)
 
     }, 1000)
 
