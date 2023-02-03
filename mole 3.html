@@ -117,16 +117,6 @@
             border: solid 1px green;
             animation: slidein2 0.8s cubic-bezier(0, 0, 0.58, 1.0);
         }
-
-
-        .hidemole {
-            background: transparent;
-            background-image: url('mole.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            border: solid 1px green;
-            animation: slideout 0.8s cubic-bezier(0, 0, 0.58, 1.0);
-        }
     </style>
 </head>
 
@@ -153,9 +143,7 @@
     setTimeout(function(){
             testbox.classList.remove("showmole");
     },800)
-
-     testbox.classList.add("hidemole");
-     testbox.classList.remove("hidemole");*/
+*/
     //////////////////////
 
     let container = document.querySelector('#container')
@@ -164,31 +152,14 @@
     boxArray = Array.from(box)
     const round = Math.round, floor = Math.floor, random = Math.random
 
+    randArray = randArray.map(item => floor(random() * 9))
 
-    let colors = ['rgb(255, 255, 255)']
+    const randbox = boxArray[round(floor(random() * randArray.length))]
 
-    setInterval(function () {
-        //set random id
-        randArray = randArray.map(item => floor(random() * colors.length))
-
-        boxArray = boxArray.map((item, index) => {
-
-            item.style.backgroundColor = colors[randArray[index]]
-            //background image
-            item.style.backgroundImage = "none"
-            return item
-        })
-        const randbox = boxArray[round(floor(random() * randArray.length))]
-        randbox.style.backgroundColor = 'rgb(250, 250, 250)'
-        randbox.style.backgroundImage = "url('mole.png')"
-        randbox.style.backgroundSize = "cover"
-
-        //randbox.classList.add("showmole");
-        /*setTimeout(function () {
-            randbox.classList.remove("showmole");
-        }, 800) */
-
-    }, 1000)
+    randbox.classList.add("showmole");
+    setTimeout(function () {
+        randbox.classList.remove("showmole");
+    }, 800)
 
 
     container.addEventListener('mousedown', function (event) {
