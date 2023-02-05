@@ -28,14 +28,17 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var socket = io();
+    var socket = io({
+        closeOnBeforeunload: false
+    });
 
 </script>
 <script type="text/javascript" src="js/inc.js"></script>
 <script>
-    window.addEventListener('pagehide', function () {
-        socket.emit('leave message', 'player has left')
-    })
+    window.onbeforeunload = function (e) {
+        e.returnValue = " ";
+        socket.emit('attempt to close', "user attempt to close");
+    };
 
     //envoit un message au load et set la scoretext
     function init() {
