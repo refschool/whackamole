@@ -7,14 +7,14 @@ let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
 const round = Math.round, floor = Math.floor, random = Math.random
 
-
-/*const gameAudio = new Audio('sounds/music.mp3');
+/*
+const gameAudio = new Audio('sounds/music.mp3');
 gameAudio.loop = true;
 html.addEventListener('click', function (event) {
 
     gameAudio.play();
-})*/
-
+})
+*/
 async function sleepMilliSecond(milliseconds) {
     let promise = new Promise((resolve, reject) => {
         setTimeout(() => resolve("...done!"), milliseconds)

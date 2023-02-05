@@ -1,0 +1,8 @@
+{
+    "name": "mole-socket",
+    "version": "0.1",
+    "description": "mon socket.io app",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
