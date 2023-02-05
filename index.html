@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-<body>
+<body onload="init()">
     <div class="container">
         <div class="box"></div>
         <div class="box"></div>
@@ -30,9 +30,13 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io();
+
 </script>
 <script type="text/javascript" src="js/inc.js"></script>
 <script>
+    function init() {
+        socket.emit('connect message', { 'player': randName })
+    }
 
     // main
     let handle = setInterval(() => {
