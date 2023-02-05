@@ -38,19 +38,18 @@
 
         body {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             cursor: url('iconHammer.png') pointer;
         }
 
-        #container {
+        .container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: stretch;
             align-content: stretch;
 
-            border: solid 2px blue;
             padding: 10px;
             width: 306px;
         }
@@ -63,9 +62,9 @@
 
         }
 
-        .testbox {
+        .score {
             border: solid 1px black;
-            height: 100px;
+            height: 45px;
             width: 100px;
             background: transparent;
         }
@@ -82,7 +81,7 @@
 </head>
 
 <body>
-    <div id="container">
+    <div class="container">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
@@ -93,14 +92,16 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
-    <!--<div class="testbox">
-        <img src="mole3.png" width="100">
-    </div>-->
+    <div class="container">
+        <div class="score">
+            score :
+        </div>
+    </div>
 </body>
 <script>
-    //let testbox = document.querySelector('.testbox')
+    let score = document.querySelector('.score')
 
-    let container = document.querySelector('#container')
+    let container = document.querySelector('.container')
     let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     let box = document.querySelectorAll('.box')
     boxArray = Array.from(box)
@@ -139,19 +140,16 @@
         const className = event.target.className
 
         if (className.includes('showmole')) {
-            const smashAudio = new Audio('smash.mp3');
+            const smashAudio = new Audio('sounds/smash.mp3');
             smashAudio.play();
             console.log("smashed !")
             //insert image
-            //debugger
             obj.innerHTML = `<img src="mole3.png" width="100">`
-            // wait 100milliseconds
+            // wait 100milliseconds then remove image
             sleep(400, obj)
 
-
-
         } else {
-            const missAudio = new Audio('miss.mp3');
+            const missAudio = new Audio('sounds/miss.mp3');
             missAudio.play();
             console.log("missed !")
         }
