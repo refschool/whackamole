@@ -5,47 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        #container {
-            border: solid 2px blue;
-            padding: 10px;
-            width: 300px;
-        }
-
-        #box {
-            border: solid 1px black;
-            height: 100px;
-            width: 100px;
-        }
-    </style>
+    <title>Jeu wackamole</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-    <div id="container">
-        <div id="box"></div>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <div class="container">
+        <div class="score">
+            0
+        </div>
     </div>
 </body>
+<script type="text/javascript" src="js/inc.js"></script>
 <script>
-    const box = document.querySelector('#box')
-    const colors = ['pink', 'red', 'green', 'blue', 'orange', 'yellow']
-    box.addEventListener('click', function (event) {
-        console.log('click dans box')
-
-        box.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
 
 
-    })
+    // main
+    let handle = setInterval(() => {
+        //randomisation apparition
+        let luckyDraw = round(floor(random() * 10))
+
+        if (luckyDraw % 2 == 0) {
+            const randbox = boxArray[round(floor(random() * randArray.length))]
+            randbox.classList.add("showmole");
+
+            setTimeout(function () {
+                randbox.classList.remove("showmole");
+            }, 800)
+        }
+
+    }, 1000)
 
 
-    box.addEventListener('mouseover', function (event) {
-        console.log('dans box')
-    })
 
-    // const container = document.querySelector('#container')
-    // container.addEventListener('click', function (event) {
-    //     alert('dans container')
-    // })
 </script>
 
 </html>

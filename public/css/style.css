@@ -1,6 +1,6 @@
 html {
     caret-color: transparent;
-    cursor: url(iconHammer.png) 2 2, pointer;
+    cursor: url(../images/iconHammer.png) 2 2, pointer;
 }
 
 
@@ -30,7 +30,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    cursor: url('../images/iconHammer.png') pointer;
+    /*cursor: url('/images/iconHammer.png') pointer;*/
 }
 
 .container {
