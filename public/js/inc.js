@@ -6,7 +6,7 @@ let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
 const round = Math.round, floor = Math.floor, random = Math.random
-
+let randName = "Player-" + round(floor(random() * 100 * 100 * 100)).toString()
 /*
 const gameAudio = new Audio('sounds/music.mp3');
 gameAudio.loop = true;
@@ -45,6 +45,8 @@ container.addEventListener('mousedown', function (event) {
         // update score
         let s = score.textContent.trim()
         console.log(s)
+        //emit message
+        socket.emit('score message', JSON.stringify({ 'player': randName, 'score': s }))
 
         score.innerHTML = parseInt(score.textContent.trim()) + 1
         //insert image

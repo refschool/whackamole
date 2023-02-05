@@ -30,7 +30,6 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    /*cursor: url('/images/iconHammer.png') pointer;*/
 }
 
 .container {
