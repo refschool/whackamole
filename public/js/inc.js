@@ -1,5 +1,5 @@
 const html = document.querySelector('html')
-let score = document.querySelector('.score')
+
 
 let container = document.querySelector('.container')
 let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -35,8 +35,8 @@ container.addEventListener('mousedown', function (event) {
 
     let obj = event.target
     let style = getComputedStyle(obj)
-    //const html = document.querySelector('html')
     const className = event.target.className
+    let score = document.querySelector(`#${randName}`)
 
     if (className.includes('showmole')) {
         const smashAudio = new Audio('sounds/smash.mp3');

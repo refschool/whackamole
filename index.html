@@ -21,11 +21,10 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
-    <div class="container">
-        <div class="score">
-            0
-        </div>
+    <div class="container" id="score">
     </div>
+
+
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -34,8 +33,13 @@
 </script>
 <script type="text/javascript" src="js/inc.js"></script>
 <script>
+    //envoit un message au load et set la scoretext
     function init() {
         socket.emit('connect message', { 'player': randName })
+        //construit la barre de score
+        let scoreText = `<div class="score" id="${randName}">0</div>`
+        let scoreContainer = document.querySelector('#score')
+        scoreContainer.innerHTML = scoreText
     }
 
     // main
