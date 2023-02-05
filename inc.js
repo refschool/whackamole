@@ -48,7 +48,7 @@ container.addEventListener('mousedown', function (event) {
 
         score.innerHTML = parseInt(score.textContent.trim()) + 1
         //insert image
-        obj.innerHTML = `<img src="mole3.png" width="100">`
+        obj.innerHTML = `<img src="images/mole3.png" width="100">`
         // wait 100milliseconds then remove image
         sleep(400, obj)
 

@@ -1,0 +1,70 @@
+html {
+    caret-color: transparent;
+    cursor: url(iconHammer.png) 2 2, pointer;
+}
+
+
+@keyframes slidein {
+    from {
+        background-position: 0px 300px;
+    }
+
+    30% {
+        background-position: 0px -20px;
+    }
+
+    40% {
+        background-position: 0px 0px;
+    }
+
+    70% {
+        background-position: 0px 0px;
+    }
+
+    to {
+        background-position: 0px 300px;
+        ;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    cursor: url('../images/iconHammer.png') pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+
+    padding: 10px;
+    width: 306px;
+}
+
+.box {
+    border: solid 1px black;
+    height: 100px;
+    width: 100px;
+    background: transparent;
+
+}
+
+.score {
+    border: solid 1px black;
+    height: 45px;
+    width: 100px;
+    background: transparent;
+}
+
+.showmole {
+    background: transparent;
+    background-image: url('../images/mole.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: solid 1px green;
+    animation: slidein 0.8s cubic-bezier(0, 0, 0.58, 1.0);
+}
