@@ -49,11 +49,12 @@
 
     //envoit un message au load et set la scoretext
     function init() {
-        socket.emit('connect message', player)
+
+        //socket.emit('connect message', player)
         //construit la barre de score
-        let scoreText = `<div class="score" id="${player.playerid}">0</div>`
-        let scoreContainer = document.querySelector('#score')
-        scoreContainer.innerHTML = scoreText
+        //let scoreText = `<div class="score" id="${player.playerid}">0</div>`
+        //let scoreContainer = document.querySelector('#score')
+        //scoreContainer.innerHTML = scoreText
     }
 
     //server has added player to player pool variable

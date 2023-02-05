@@ -1,4 +1,4 @@
-const { log } = require('console');
+const { foo } = require('./tools.js')
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -21,11 +21,19 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
 
     console.log('a user connected');
+    foo()
 
     socket.on('connect message', (player) => {
         //connection established, add to playerPool
         console.log('in connect message', player)
-        playerPool.push({ ...player })
+        //push if ot exist
+        //https://stackoverflow.com/questions/1988349/array-push-if-does-not-exist
+        playerPool.filter((item) => {
+            return item.socketid !== player.socketid
+        })
+            .concat([{ ...player, socketid: socket.id }])
+
+        //playerPool.push({ ...player })
         console.log('playerPool', playerPool)
 
         io.emit('update player pool', { ...player })
