@@ -6,7 +6,9 @@ let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
 const round = Math.round, floor = Math.floor, random = Math.random
-let randName = "Player-" + round(floor(random() * 100 * 100 * 100)).toString()
+const player = {}
+player.playerid = "Player-" + round(floor(random() * 100 * 100 * 100)).toString()
+
 /*
 const gameAudio = new Audio('sounds/music.mp3');
 gameAudio.loop = true;
@@ -36,7 +38,7 @@ container.addEventListener('mousedown', function (event) {
     let obj = event.target
     let style = getComputedStyle(obj)
     const className = event.target.className
-    let score = document.querySelector(`#${randName}`)
+    let score = document.querySelector(`#${player.playerid}`)
 
     if (className.includes('showmole')) {
         const smashAudio = new Audio('sounds/smash.mp3');
@@ -47,7 +49,7 @@ container.addEventListener('mousedown', function (event) {
         score.innerHTML = s
 
         //emit message
-        socket.emit('score message', JSON.stringify({ 'player': randName, 'score': s }))
+        socket.emit('score message', { ...player, 'score': s })
 
         //insert image
         obj.innerHTML = `<img src="images/mole3.png" width="100">`

@@ -28,31 +28,38 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+    // closeOnBeforeunload: false   permet de prévenir quand on quitte l'onglet
     var socket = io({
         closeOnBeforeunload: false
     });
+
+    socket.on('connect', () => {
+        player.socketid = socket.id
+        console.log('player = ', player)
+        socket.emit('connect message', player)
+    })
 
 </script>
 <script type="text/javascript" src="js/inc.js"></script>
 <script>
     window.onbeforeunload = function (e) {
         e.returnValue = " ";
-        socket.emit('attempt to close', "user attempt to close");
+        socket.emit('attempt to close', player);
     };
 
     //envoit un message au load et set la scoretext
     function init() {
-        socket.emit('connect message', { 'player': randName })
+        socket.emit('connect message', player)
         //construit la barre de score
-        let scoreText = `<div class="score" id="${randName}">0</div>`
+        let scoreText = `<div class="score" id="${player.playerid}">0</div>`
         let scoreContainer = document.querySelector('#score')
         scoreContainer.innerHTML = scoreText
     }
 
-    socket.on('update player pool', (msg) => {
-        console.log(msg)
-        console.log(msg.player)
-        if (msg.player === randName) {
+    //server has added player to player pool variable
+    socket.on('update player pool', (player) => {
+        console.log('update player pool', player)
+        if (player.playerid === player.playerid) {
             console.log("won't be added locally")
         }
         else {

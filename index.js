@@ -8,6 +8,7 @@ const io = new Server(server);
 
 // player aray
 const playerPool = []
+let leavingPlayer = {}
 
 //set static folder the expressJS way
 app.use(express.static('public'));
@@ -21,6 +22,25 @@ io.on('connection', (socket) => {
 
     console.log('a user connected');
 
+    socket.on('connect message', (player) => {
+        //connection established, add to playerPool
+        console.log('in connect message', player)
+        playerPool.push({ ...player })
+        console.log('playerPool', playerPool)
+
+        io.emit('update player pool', { ...player })
+    })
+
+
+    socket.on('disconnect', (msg) => {
+        console.log('user disconnected', msg);
+        console.log('socket id = ', socket.id);
+        //suppress from array the player
+        /*  playerPool = playerPool.filter((player) => {
+              return player.player != msg.player
+          })*/
+    });
+
     socket.on('connect message', (msg) => {
         //add to array
         playerPool.push(msg)
@@ -30,19 +50,11 @@ io.on('connection', (socket) => {
     })
 
 
-    socket.on('disconnect', (msg) => {
-        console.log('user disconnected');
-        //suppress from array the player
-        /*  playerPool = playerPool.filter((player) => {
-              return player.player != msg.player
-          })*/
-    });
+    socket.on('attempt to close', (msg) => {
+        console.log('attempt to close by', msg)
 
-    socket.on('leave message', (msg) => {
-        console.log('playerPool has left')
-
-        //io.emit('update player pool', { ...msg })
     })
+
 
 
     socket.on('score message', (msg) => {
