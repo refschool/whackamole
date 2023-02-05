@@ -43,12 +43,12 @@ container.addEventListener('mousedown', function (event) {
         smashAudio.play();
         console.log("smashed !")
         // update score
-        let s = score.textContent.trim()
-        console.log(s)
+        let s = parseInt(score.textContent.trim()) + 1
+        score.innerHTML = s
+
         //emit message
         socket.emit('score message', JSON.stringify({ 'player': randName, 'score': s }))
 
-        score.innerHTML = parseInt(score.textContent.trim()) + 1
         //insert image
         obj.innerHTML = `<img src="images/mole3.png" width="100">`
         // wait 100milliseconds then remove image

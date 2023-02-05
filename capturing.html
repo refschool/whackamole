@@ -5,20 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        #container {
-            border: solid 2px blue;
-            padding: 10px;
-            width: 300px;
-        }
+    <title>on before unload</title>
 
-        #box {
-            border: solid 1px black;
-            height: 100px;
-            width: 100px;
-        }
-    </style>
 </head>
 
 <body>
@@ -30,16 +18,10 @@
     </div>
 </body>
 <script>
-    const box = document.querySelector('#box')
+    window.addEventListener('pagehide', function () {
+        alert('toto')
+    })
 
-    box.addEventListener('click', function (event) {
-        alert('dans box')
-
-    }, true)
-    const container = document.querySelector('#container')
-    container.addEventListener('click', function (event) {
-        alert('dans container')
-    }, true)
 </script>
 
 </html>

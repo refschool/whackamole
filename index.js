@@ -6,6 +6,9 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+// player aray
+const playerPool = []
+
 //set static folder the expressJS way
 app.use(express.static('public'));
 
@@ -17,14 +20,29 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
 
     console.log('a user connected');
+
     socket.on('connect message', (msg) => {
-        console.log(msg, 'is connected')
+        //add to array
+        playerPool.push(msg)
+        console.log('playerPool', playerPool)
+
+        io.emit('update player pool', { ...msg })
     })
 
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', (msg) => {
         console.log('user disconnected');
+        //suppress from array the player
+        /*  playerPool = playerPool.filter((player) => {
+              return player.player != msg.player
+          })*/
     });
+
+    socket.on('leave message', (msg) => {
+        console.log('playerPool has left')
+
+        //io.emit('update player pool', { ...msg })
+    })
 
 
     socket.on('score message', (msg) => {

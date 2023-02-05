@@ -10,7 +10,7 @@
 </head>
 
 <body onload="init()">
-    <div class="container">
+    <div class=" container">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
@@ -33,6 +33,10 @@
 </script>
 <script type="text/javascript" src="js/inc.js"></script>
 <script>
+    window.addEventListener('pagehide', function () {
+        socket.emit('leave message', 'player has left')
+    })
+
     //envoit un message au load et set la scoretext
     function init() {
         socket.emit('connect message', { 'player': randName })
@@ -41,6 +45,18 @@
         let scoreContainer = document.querySelector('#score')
         scoreContainer.innerHTML = scoreText
     }
+
+    socket.on('update player pool', (msg) => {
+        console.log(msg)
+        console.log(msg.player)
+        if (msg.player === randName) {
+            console.log("won't be added locally")
+        }
+        else {
+            console.log("new player discovered, add it!")
+        }
+        // or better parse the array
+    })
 
     // main
     let handle = setInterval(() => {
