@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 // player aray
-const playerPool = []
+let playerPool = []
 let leavingPlayer = {}
 
 //set static folder the expressJS way
@@ -44,9 +44,10 @@ io.on('connection', (socket) => {
         console.log('user disconnected', msg);
         console.log('socket id = ', socket.id);
         //suppress from array the player
-        /*  playerPool = playerPool.filter((player) => {
-              return player.player != msg.player
-          })*/
+        playerPool = playerPool.filter((player) => {
+            return player.socketid != socket.id
+        })
+        console.log('playerPool', playerPool)
     });
 
     socket.on('connect message', (msg) => {
@@ -57,10 +58,10 @@ io.on('connection', (socket) => {
         io.emit('update player pool', { ...msg })
     })
 
-
+    // is it truly leaving?
     socket.on('attempt to close', (msg) => {
         console.log('attempt to close by', msg)
-
+        console.log('playerPool', playerPool)
     })
 
 
