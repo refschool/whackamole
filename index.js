@@ -28,15 +28,23 @@ io.on('connection', (socket) => {
         console.log('in connect message', player)
         //push if ot exist
         //https://stackoverflow.com/questions/1988349/array-push-if-does-not-exist
-        playerPool.filter((item) => {
-            return item.socketid !== player.socketid
-        })
-            .concat([{ ...player, socketid: socket.id }])
+
+        if (playerPool.length == 0) {
+            playerPool.push(player)
+        }
+        else {
+            playerPool.push(player)
+            /*playerPool.filter((item) => {
+                return item.socketid !== player.socketid
+            })
+                .concat([{ ...player, socketid: socket.id }])*/
+        }
+
 
         //playerPool.push({ ...player })
-        console.log('playerPool', playerPool)
-
-        io.emit('update player pool', { ...player })
+        console.log('playerPool connect', playerPool)
+        // TODO : return the entire playerpool
+        io.emit('update player pool', playerPool)
     })
 
 
@@ -47,21 +55,14 @@ io.on('connection', (socket) => {
         playerPool = playerPool.filter((player) => {
             return player.socketid != socket.id
         })
-        console.log('playerPool', playerPool)
+        console.log('playerPool disconnect', playerPool)
     });
 
-    socket.on('connect message', (msg) => {
-        //add to array
-        playerPool.push(msg)
-        console.log('playerPool', playerPool)
-
-        io.emit('update player pool', { ...msg })
-    })
 
     // is it truly leaving?
     socket.on('attempt to close', (msg) => {
         console.log('attempt to close by', msg)
-        console.log('playerPool', playerPool)
+        console.log('playerPool close', playerPool)
     })
 
 

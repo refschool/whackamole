@@ -10,7 +10,7 @@
 </head>
 
 <body onload="init()">
-    <div class=" container">
+    <div class="container">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
@@ -21,7 +21,7 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
-    <div class="container" id="score">
+    <div class="container" id="scoreContainer">
     </div>
 
 
@@ -49,22 +49,26 @@
 
     //envoit un message au load et set la scoretext
     function init() {
-
         //construit la barre de score
-        let scoreText = `<div class="score" id="${player.playerid}">0</div>`
-        let scoreContainer = document.querySelector('#score')
+        let scoreText = `${player.playerid}<div class="score" id="${player.playerid}">0</div>`
+        let scoreContainer = document.querySelector('#scoreContainer')
         scoreContainer.innerHTML = scoreText
     }
 
-    //server has added player to player pool variable
-    socket.on('update player pool', (player) => {
-        console.log('update player pool', player)
+    //server has added player to player pool variable and returns the playerPool
+    socket.on('update player pool', (playerPool) => {
+        console.log('update player pool', playerPool)
+
+        /*
         if (player.playerid === player.playerid) {
             console.log("won't be added locally")
         }
         else {
             console.log("new player discovered, add it!")
-        }
+            let scoreText = `<div class="score" id="${player.playerid}">0</div>`
+
+            scoreContainer.innerHTML = scoreContainer.innerHTML + scoreText
+        }*/
         // or better parse the array
     })
 

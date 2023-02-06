@@ -2,6 +2,7 @@ const html = document.querySelector('html')
 
 
 let container = document.querySelector('.container')
+let scoreContainer = document.querySelector('scoreContainer')
 let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
