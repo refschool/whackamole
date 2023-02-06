@@ -48,8 +48,8 @@ container.addEventListener('mousedown', function (event) {
         let s = parseInt(score.textContent.trim()) + 1
         score.innerHTML = s
 
-        //emit message
-        socket.emit('score message', { ...player, 'score': s })
+        //emit message, doc says bad practice ot stringify,but need this if spread used used
+        socket.emit('score message', JSON.stringify({ ...player, 'score': s }))
 
         //insert image
         obj.innerHTML = `<img src="images/mole3.png" width="100">`
