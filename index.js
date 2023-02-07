@@ -26,22 +26,17 @@ io.on('connection', (socket) => {
     socket.on('connect message', (player) => {
         //connection established, add to playerPool
         console.log('in connect message', player)
-        //push if ot exist
+
         //https://stackoverflow.com/questions/1988349/array-push-if-does-not-exist
 
-        if (playerPool.length == 0) {
-            playerPool.push(player)
-        }
-        else {
-            playerPool.push(player)
-            /*playerPool.filter((item) => {
-                return item.socketid !== player.socketid
-            })
-                .concat([{ ...player, socketid: socket.id }])*/
-        }
 
+        playerPool.push(player)
 
-        //playerPool.push({ ...player })
+        /*playerPool.filter((item) => {
+            return item.socketid !== player.socketid
+        })
+            .concat([{ ...player, socketid: socket.id }])*/
+
         console.log('playerPool connect', playerPool)
         // TODO : return the entire playerpool
         io.emit('update player pool', playerPool)
@@ -49,13 +44,15 @@ io.on('connection', (socket) => {
 
 
     socket.on('disconnect', (msg) => {
-        console.log('user disconnected', msg);
-        console.log('socket id = ', socket.id);
-        //suppress from array the player
+        console.log('user disconnected', msg, 'socket id = ', socket.id);
+
+        //remove from array the player
         playerPool = playerPool.filter((player) => {
             return player.socketid != socket.id
         })
         console.log('playerPool disconnect', playerPool)
+        // TODO : send the playerPool
+        io.emit('update player pool', playerPool)
     });
 
 
