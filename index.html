@@ -47,19 +47,27 @@
         e.returnValue = " ";
         socket.emit('attempt to close', player);
     };
+    debugger
 
     //envoit un message au load et set la scoretext
     function init() {
         //construit la barre de score
         let scoreText = `${player.playerid}<div class="score" id="${player.playerid}">0</div>`
-        let scoreContainer = document.querySelector('#scoreContainer')
+        //let scoreContainer = document.querySelector('#scoreContainer')
         scoreContainer.innerHTML = scoreText
     }
 
     //server has added player to player pool variable and returns the playerPool
     socket.on('update player pool', (playerPool) => {
         console.log('update player pool', playerPool)
+        //reconstituer les barre de score
+        let scorebars = ''
+        playerPool.map((player) => {
+            scorebars = scorebars + `<div class="score" id="${player.playerid}">${player.score}</div>`
 
+        })
+        debugger
+        scoreContainer.innerHTML = scorebars
 
     })
 

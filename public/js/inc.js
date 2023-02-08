@@ -2,7 +2,7 @@ const html = document.querySelector('html')
 
 
 let container = document.querySelector('.container')
-let scoreContainer = document.querySelector('scoreContainer')
+let scoreContainer = document.querySelector('#scoreContainer')
 let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
@@ -67,6 +67,5 @@ container.addEventListener('mousedown', function (event) {
 })
 
 container.addEventListener('mouseup', function (event) {
-    //const html = document.querySelector('html')
     html.style.cursor = "url(images/iconHammer.png) 2 2, pointer";
 })
