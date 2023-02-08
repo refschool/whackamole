@@ -40,14 +40,16 @@ container.addEventListener('mousedown', function (event) {
     let style = getComputedStyle(obj)
     const className = event.target.className
     let score = document.querySelector(`#${player.playerid}`)
+    let scorePlaceholder = score.querySelector('.playerScore')
+    score = parseInt(score.getAttribute('data-score'))
 
     if (className.includes('showmole')) {
         const smashAudio = new Audio('sounds/smash.mp3');
         smashAudio.play();
         console.log("smashed !")
         // update score
-        let s = parseInt(score.textContent.trim()) + 1
-        score.innerHTML = s
+        let s = score + 1
+        scorePlaceholder.innerHTML = s
 
         //emit message, doc says bad practice ot stringify,but need this if spread used used
         socket.emit('score message', JSON.stringify({ ...player, 'score': s }))

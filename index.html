@@ -54,8 +54,7 @@
     //envoit un message au load et set la scoretext
     function init() {
         //construit la barre de score
-        let scoreText = `${player.playerid}<div class="score" id="${player.playerid}">0</div>`
-        //let scoreContainer = document.querySelector('#scoreContainer')
+        let scoreText = `<div class="score" id="${player.playerid}">0</div>`
         scoreContainer.innerHTML = scoreText
     }
 
@@ -67,7 +66,7 @@
         let scorebars = ''
         playerPool.map((player) => {
             let paddedScore = String(player.score).padStart(4, '0')
-            scorebars = scorebars + `<div class="score" id="${player.playerid}">
+            scorebars = scorebars + `<div class="score" id="${player.playerid}" data-score="${player.score}">
                 <div class="playerName">${player.playerid}</div>
                 <div class="playerScore">${paddedScore}</div>
                 </div>`
