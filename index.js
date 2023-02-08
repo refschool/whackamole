@@ -62,10 +62,25 @@ io.on('connection', (socket) => {
     })
 
 
+    // dès qu'il y a un hit, on renvoit le playerPool
+    socket.on('score message', (incomingPlayer) => {
+        incomingPlayer = JSON.parse(incomingPlayer);
+        //update playerPool
 
-    socket.on('score message', (msg) => {
-        io.emit('score message', msg);
-        console.log('message: ' + msg);
+        let playerPoolTmp = playerPool.map((player) => {
+            if (player.socketid == incomingPlayer.socketid) {
+                player.score = incomingPlayer.score
+                return player
+            } else {
+                return player
+            }
+        })
+
+
+        //emit
+        io.emit('update player pool', playerPoolTmp);
+        playerPool = playerPoolTmp
+        console.log('score message : ' + JSON.stringify(incomingPlayer));
     });
 
 

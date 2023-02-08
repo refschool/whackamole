@@ -21,7 +21,7 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
-    <div class="container" id="scoreContainer">
+    <div id="scoreContainer">
     </div>
 
 
@@ -47,7 +47,7 @@
         e.returnValue = " ";
         socket.emit('attempt to close', player);
     };
-    debugger
+
 
     //envoit un message au load et set la scoretext
     function init() {
@@ -61,12 +61,13 @@
     socket.on('update player pool', (playerPool) => {
         console.log('update player pool', playerPool)
         //reconstituer les barre de score
+        debugger
         let scorebars = ''
         playerPool.map((player) => {
             scorebars = scorebars + `<div class="score" id="${player.playerid}">${player.score}</div>`
 
         })
-        debugger
+
         scoreContainer.innerHTML = scorebars
 
     })
