@@ -8,7 +8,6 @@ const io = new Server(server);
 
 // player aray
 let playerPool = []
-let leavingPlayer = {}
 
 //set static folder the expressJS way
 app.use(express.static('public'));

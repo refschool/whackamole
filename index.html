@@ -35,6 +35,7 @@
 
     socket.on('connect', () => {
         player.socketid = socket.id
+        player = { ...player, score: 0 }
         console.log('player = ', player)
         socket.emit('connect message', player)
     })

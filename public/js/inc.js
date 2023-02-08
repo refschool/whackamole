@@ -7,7 +7,7 @@ let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 let box = document.querySelectorAll('.box')
 boxArray = Array.from(box)
 const round = Math.round, floor = Math.floor, random = Math.random
-const player = {}
+let player = {}
 player.playerid = "Player-" + round(floor(random() * 100 * 100 * 100)).toString()
 
 /*
