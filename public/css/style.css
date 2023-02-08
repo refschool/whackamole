@@ -3,6 +3,20 @@ html {
     cursor: url(../images/iconHammer.png) 2 2, pointer;
 }
 
+@font-face {
+    font-family: "laout";
+    src: url('laout-beauty-font/LaoutBeautyPersonalUse-X3MjG.otf');
+}
+
+@font-face {
+    font-family: "grid0";
+    src: url('14-led-phattt-font/14LedPhatttHeavy-Bav3.ttf');
+}
+
+@font-face {
+    font-family: "grid1";
+    src: url('led-simple-st-font/LedSimpleSt-YL4o.ttf');
+}
 
 @keyframes slidein {
     from {
@@ -51,7 +65,9 @@ body {
     justify-content: center;
     align-items: stretch;
     align-content: stretch;
-
+    border: 1px solid black;
+    padding: 10px;
+    width: 306px;
 }
 
 
@@ -64,10 +80,44 @@ body {
 }
 
 .score {
-    border: solid 1px black;
+    /*border: solid 1px black;*/
+    /*background-color: black;*/
     height: 45px;
-    width: 100px;
+    width: 100%;
     background: transparent;
+    border-radius: 5px;
+    padding: 0px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.playerName {
+    padding-left: 10px;
+    font-family: grid0, Arial;
+    width: 58%;
+    line-height: 45px;
+    color: red;
+    background-color: black;
+}
+
+.playerScore {
+    font-family: grid0, Arial;
+    width: 38%;
+    line-height: 45px;
+    font-size: 3em;
+    color: red;
+    background-color: black;
+
+}
+
+.title {
+    font-family: laout, Arial;
+    font-size: 3em;
 }
 
 .showmole {

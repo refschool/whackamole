@@ -24,7 +24,9 @@
     <div id="scoreContainer">
     </div>
 
-
+    <div class="container title">
+        Whack a Mole
+    </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -61,10 +63,14 @@
     socket.on('update player pool', (playerPool) => {
         console.log('update player pool', playerPool)
         //reconstituer les barre de score
-        debugger
+
         let scorebars = ''
         playerPool.map((player) => {
-            scorebars = scorebars + `<div class="score" id="${player.playerid}">${player.score}</div>`
+            let paddedScore = String(player.score).padStart(4, '0')
+            scorebars = scorebars + `<div class="score" id="${player.playerid}">
+                <div class="playerName">${player.playerid}</div>
+                <div class="playerScore">${paddedScore}</div>
+                </div>`
 
         })
 
