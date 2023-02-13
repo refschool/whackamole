@@ -58,18 +58,33 @@
         scoreContainer.innerHTML = scoreText
     }
 
+
+
     //server has added player to player pool variable and returns the playerPool
     socket.on('update player pool', (playerPool) => {
         console.log('update player pool', playerPool)
+        // fonction generator
+        function* gen() {
+            yield "yellow";
+            yield "green";
+            yield "red";
+            yield "blue";
+            yield "cyan";
+        }
+        let colors = gen()
         //reconstituer les barre de score
 
         let scorebars = ''
         playerPool.map((player) => {
             let paddedScore = String(player.score).padStart(4, '0')
+
+
+            let color = colors.next().value
             scorebars = scorebars + `<div class="score" id="${player.playerid}" data-score="${player.score}">
-                <div class="playerName">${player.playerid}</div>
-                <div class="playerScore">${paddedScore}</div>
+                <div class="playerName ${color}">${player.playerid}</div>
+                <div class="playerScore ${color}">${paddedScore}</div>
                 </div>`
+
 
         })
 
