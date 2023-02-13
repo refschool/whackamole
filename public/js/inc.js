@@ -1,6 +1,6 @@
 const html = document.querySelector('html')
 
-
+let multiplier = 10
 let container = document.querySelector('.container')
 let scoreContainer = document.querySelector('#scoreContainer')
 let randArray = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -48,7 +48,7 @@ container.addEventListener('mousedown', function (event) {
         smashAudio.play();
         console.log("smashed !")
         // update score
-        let s = score + 1
+        let s = score + 1 * multiplier
         scorePlaceholder.innerHTML = s
 
         //emit message, doc says bad practice ot stringify,but need this if spread used used
