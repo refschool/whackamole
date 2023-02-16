@@ -1,2 +1,0 @@
-curl 'http://freesoundeffect.net/sites/default/files/hammer--impacts-wood--1-sound-effect-70147706.mp3' --output miss.mp3
-curl 'http://freesoundeffect.net/sites/default/files/punch-sfx-2-sound-effect-84722901.mp3' --output smash.mp3 
