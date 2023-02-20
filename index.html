@@ -27,6 +27,8 @@
     <div class="container title">
         Whack a Mole
     </div>
+    <h2 id="startgame">Start Game</h2>
+    <div id="counter"></div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -84,38 +86,50 @@
                 <div class="playerName ${color}">${player.playerid}</div>
                 <div class="playerScore ${color}">${paddedScore}</div>
                 </div>`
-
-
         })
 
         scoreContainer.innerHTML = scorebars
 
     })
 
-    // main
-    n = 0
-    let handle = setInterval(() => {
-        //randomisation apparition
-        let luckyDraw = round(floor(random() * 10))
+    // gestion bouton start
+    let startButton = document.querySelector("#startgame")
+    startButton.addEventListener('click', () => {
+        console.log("startgame")
 
-        if (luckyDraw % 2 == 0) {
-            const randbox = boxArray[round(floor(random() * randArray.length))]
-            randbox.classList.add("showmole");
+        // main
+        n = 0
+        let handle = setInterval(() => {
+            //randomisation apparition
+            let luckyDraw = round(floor(random() * 10))
 
-            setTimeout(function () {
-                randbox.classList.remove("showmole")
-            }, 800)
-        }
+            if (luckyDraw % 2 == 0) {
+                const randbox = boxArray[round(floor(random() * randArray.length))]
+                randbox.classList.add("showmole");
 
-        //fin à 15 secondes
-        if (n > 15) {
-            clearInterval(handle)
-            console.log("n ", n)
-        }
+                setTimeout(function () {
+                    randbox.classList.remove("showmole")
+                }, 800)
+            }
 
-        n++
+            //fin à 15 secondes
+            if (n > 15) {
+                clearInterval(handle)
+                console.log("n ", n)
+            }
 
-    }, 1000)
+            // update counter
+            let counter = document.querySelector("#counter")
+            counter.innerHTML = n
+            n++
+
+        }, 1000)
+
+
+
+
+
+    })
 
 
 
