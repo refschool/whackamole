@@ -93,6 +93,7 @@
     })
 
     // main
+    n = 0
     let handle = setInterval(() => {
         //randomisation apparition
         let luckyDraw = round(floor(random() * 10))
@@ -102,9 +103,17 @@
             randbox.classList.add("showmole");
 
             setTimeout(function () {
-                randbox.classList.remove("showmole");
+                randbox.classList.remove("showmole")
             }, 800)
         }
+
+        //fin à 15 secondes
+        if (n > 15) {
+            clearInterval(handle)
+            console.log("n ", n)
+        }
+
+        n++
 
     }, 1000)
 
